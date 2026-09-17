@@ -9,10 +9,11 @@ export const SITE_TAGLINE_PT =
 export const OG_IMAGE_PATH = '/douglas.png'
 
 export const generatedOgImage = {
-  url: '/opengraph-image',
+  url: '/og.jpg',
   width: 1200,
   height: 630,
-  alt: SITE_NAME
+  alt: SITE_NAME,
+  type: 'image/jpeg'
 }
 
 export function languageAlternates(path = '') {
