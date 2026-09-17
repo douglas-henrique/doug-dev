@@ -37,6 +37,14 @@ const nextConfig: NextConfig = {
         hostname: 'opengraph.githubassets.com'
       }
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/og.jpg',
+        destination: '/opengraph-image'
+      }
+    ]
   }
  };
 

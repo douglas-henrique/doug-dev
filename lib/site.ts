@@ -3,7 +3,7 @@ export type Locale = (typeof LOCALES)[number]
 export const DEFAULT_LOCALE: Locale = 'en'
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.dougdev.com.br'
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.douglaspereira.dev.br'
 
 export const SITE_NAME = 'Douglas Pereira'
 export const SITE_INITIALS = 'DH'

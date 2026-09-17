@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import sharp from 'sharp'
 import { SITE_NAME } from '@/lib/site'
 import { SITE_TAGLINE_EN } from '@/lib/seo'
 
@@ -9,14 +10,14 @@ export const size = {
   width: 1200,
   height: 630
 }
-export const contentType = 'image/png'
+export const contentType = 'image/jpeg'
 export const runtime = 'nodejs'
 
 export default async function Image() {
   const photo = await readFile(join(process.cwd(), 'public/douglas.png'))
   const photoSrc = `data:image/png;base64,${photo.toString('base64')}`
 
-  return new ImageResponse(
+  const png = new ImageResponse(
     (
       <div
         style={{
@@ -72,4 +73,15 @@ export default async function Image() {
     ),
     { ...size }
   )
+
+  const jpeg = await sharp(Buffer.from(await png.arrayBuffer()))
+    .jpeg({ quality: 80, mozjpeg: true })
+    .toBuffer()
+
+  return new Response(jpeg, {
+    headers: {
+      'Content-Type': 'image/jpeg',
+      'Cache-Control': 'public, max-age=31536000, immutable'
+    }
+  })
 }
