@@ -1,0 +1,57 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'The CSS I actually use',
+  description: desc('en/blog/css-i-use'),
+  alternates: {
+    canonical: '/en/blog/css-i-use',
+    languages: {
+      en: '/en/blog/css-i-use',
+      pt: '/pt/blog/css-i-use',
+      'x-default': '/en/blog/css-i-use'
+    }
+  }
+};
+
+# The CSS I actually use
+
+<Author href="/en" />
+
+<PostDate dateTime="2026-03-01" headline="The CSS I actually use" path="/en/blog/css-i-use">March 2026</PostDate>
+
+I do not have a CSS personality. I have a short list, most of it now in the language instead of in a preprocessor.
+
+## Layout
+
+Flex and grid. `gap` instead of margin collapse tricks. Subgrid when a child must share tracks with a parent — [MDN: subgrid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid) is finally the thing we faked with inner grids.
+
+Container queries (`@container`) for components that should not care about the viewport. A card in a sidebar is not a card on a marketing breakpoint.
+
+## Cascade without a fight
+
+[`@layer`](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) for reset, base, components. Utilities last. I stopped playing specificity war. If a component needs a one-off, the one-off lives next to the component.
+
+This site uses Tailwind v4 `@theme` for tokens and a thin `globals.css` for code blocks. That split is the same idea as layers: tokens and primitives vs one-off chrome.
+
+## Color and type
+
+`light-dark()` and `color-mix()` where native is enough. `prefers-color-scheme` as the default switch; no third theme until someone pays for it. `text-wrap: balance` on headings, `pretty` on long body when the engine supports it ([CSS Text 4](https://www.w3.org/TR/css-text-4/#text-wrap-pretty)).
+
+```css
+h1, h2, h3, h4 { text-wrap: balance; }
+a, button {
+  cursor: pointer;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+```
+
+Focus styles stay visible. `outline` is not a decoration you delete in the reset.
+
+## References
+
+- [MDN: CSS Grid — subgrid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid)
+- [MDN: @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer)
+- [MDN: CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries)
+- [MDN: light-dark()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)
+- [CSS Text Module Level 4: text-wrap](https://www.w3.org/TR/css-text-4/)
+- [Tailwind CSS v4: @theme](https://tailwindcss.com/docs/theme)

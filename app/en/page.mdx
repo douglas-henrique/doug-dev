@@ -1,0 +1,35 @@
+import { notes, blogPosts } from '@/lib/content'
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  description: desc('en/home'),
+  alternates: {
+    canonical: '/en',
+    languages: {
+      en: '/en',
+      pt: '/pt',
+      'x-default': '/en'
+    }
+  }
+};
+
+export const shortBio =
+  "I'm an engineer and writer. I build software, lead teams, and write about what I learn along the way.";
+
+export const longBio = `I'm an engineer and writer. I build software, lead teams, and write about what I learn along the way.
+
+I work as a tech lead in Brazil. I care about making technology easy to understand — shipping products, writing things down, and teaching as I go. Lately I've been spending more time with AI, including RAG systems and the tools around them.
+
+This site is my notes, writing, and work.`;
+
+<Wordmark>Douglas Pereira</Wordmark>
+
+<Bio short={shortBio} long={longBio} />
+
+## Notes
+
+<NoteList notes={notes.en} />
+
+## Blogs
+
+<PostList pageParam="posts" posts={blogPosts.en} />

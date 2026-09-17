@@ -1,0 +1,50 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Ensinar faz parte de entregar',
+  description: desc('pt/blog/teaching-while-shipping'),
+  alternates: {
+    canonical: '/pt/blog/teaching-while-shipping',
+    languages: {
+      en: '/en/blog/teaching-while-shipping',
+      pt: '/pt/blog/teaching-while-shipping',
+      'x-default': '/en/blog/teaching-while-shipping'
+    }
+  }
+};
+
+# Ensinar faz parte de entregar
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-04-01" headline="Ensinar faz parte de entregar" path="/pt/blog/teaching-while-shipping">Abril 2026</PostDate>
+
+Se só uma pessoa consegue fazer deploy, você não entregou. Você alugou isso para a agenda dessa pessoa. Bus factor não é metáfora; é SLO.
+
+## Diátaxis, não blob de wiki
+
+O [Diátaxis](https://diataxis.fr/) parte docs em tutorial, how-to, referência, explicação. Misturar é por isso que README apodrece. A feature não acabou até existir:
+
+- um how-to do caminho feliz (copiável)
+- uma referência de flags, env, códigos de falha
+- uma frase de runbook para as 18h: comando, output esperado, rollback
+
+O [livro de SRE](https://sre.google/sre-book/table-of-contents/) trata isso como produção, não "nice to have." Se o dashboard é a única explicação, você documentou um print.
+
+## Escreve enquanto o grafo ainda está na cabeça
+
+Eu tratava o texto como extra depois da flag. Agora é a definition of done. Explicar a flag é como eu vejo que o default está invertido e o nome é piada.
+
+Uma nota curta de arquitetura ganha de novel no Confluence: contexto, decisão, consequências — o formato de [ADR](https://adr.github.io/), mesmo se o arquivo tem 20 linhas em `docs/`.
+
+## Ensinar é teste
+
+Se eu não explico a borda de auth sem abrir o código, a borda não está nos tipos. Pairing e um walkthrough gravado são mais baratos do que pager às 2h para a próxima pessoa.
+
+## Referências
+
+- [Diátaxis](https://diataxis.fr/) — Daniele Procida
+- [Google SRE Book](https://sre.google/sre-book/table-of-contents/)
+- [Architecture Decision Records](https://adr.github.io/)
+- [Write the Docs](https://www.writethedocs.org/)
+- [12-factor: config and admin processes](https://12factor.net/)

@@ -1,0 +1,57 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'O CSS que eu de fato uso',
+  description: desc('pt/blog/css-i-use'),
+  alternates: {
+    canonical: '/pt/blog/css-i-use',
+    languages: {
+      en: '/en/blog/css-i-use',
+      pt: '/pt/blog/css-i-use',
+      'x-default': '/en/blog/css-i-use'
+    }
+  }
+};
+
+# O CSS que eu de fato uso
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-03-01" headline="O CSS que eu de fato uso" path="/pt/blog/css-i-use">Março 2026</PostDate>
+
+Eu não tenho uma personalidade de CSS. Tenho uma lista curta, a maior parte agora na linguagem em vez de no preprocessor.
+
+## Layout
+
+Flex e grid. `gap` em vez de truque de margin collapse. Subgrid quando o filho precisa compartilhar track com o pai — [MDN: subgrid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid) finalmente é o que a gente fingia com grid interno.
+
+Container queries (`@container`) para componente que não deveria ligar para o viewport. Card na sidebar não é card no breakpoint de marketing.
+
+## Cascade sem briga
+
+[`@layer`](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer) para reset, base, components. Utilities por último. Parei a guerra de especificidade. Se o componente precisa de um caso, o caso mora do lado do componente.
+
+Este site usa Tailwind v4 `@theme` para token e um `globals.css` fino para bloco de código. A divisão é a mesma ideia de layer: token e primitivo vs chrome pontual.
+
+## Cor e tipo
+
+`light-dark()` e `color-mix()` quando o nativo chega. `prefers-color-scheme` como switch default; terceiro tema só se alguém pagar. `text-wrap: balance` em heading, `pretty` em corpo longo quando o engine aguenta ([CSS Text 4](https://www.w3.org/TR/css-text-4/#text-wrap-pretty)).
+
+```css
+h1, h2, h3, h4 { text-wrap: balance; }
+a, button {
+  cursor: pointer;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+```
+
+Focus visível. `outline` não é decoração que você apaga no reset.
+
+## Referências
+
+- [MDN: CSS Grid — subgrid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Subgrid)
+- [MDN: @layer](https://developer.mozilla.org/en-US/docs/Web/CSS/@layer)
+- [MDN: CSS container queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries)
+- [MDN: light-dark()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)
+- [CSS Text Module Level 4: text-wrap](https://www.w3.org/TR/css-text-4/)
+- [Tailwind CSS v4: @theme](https://tailwindcss.com/docs/theme)

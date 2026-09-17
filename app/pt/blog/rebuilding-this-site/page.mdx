@@ -1,0 +1,53 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Por que reconstruí este site em MDX',
+  description: desc('pt/blog/rebuilding-this-site'),
+  alternates: {
+    canonical: '/pt/blog/rebuilding-this-site',
+    languages: {
+      en: '/en/blog/rebuilding-this-site',
+      pt: '/pt/blog/rebuilding-this-site',
+      'x-default': '/en/blog/rebuilding-this-site'
+    }
+  }
+};
+
+# Por que reconstruí este site em MDX
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-09-01" headline="Por que reconstruí este site em MDX" path="/pt/blog/rebuilding-this-site">Setembro 2026</PostDate>
+
+Eu queria um site em que eu de fato escrevesse. Sem CMS, sem floresta de componentes. Uma página é uma pasta com um `page.mdx`. Se a frase está errada, eu mudo a frase e entrego.
+
+## File-system routing é o CMS
+
+O App Router do Next.js já mapeia pasta para URL. MDX em cima disso significa que o conteúdo *é* a rota. Sem tabela de slug, sem iframe de preview, sem botão "publicar" que destoa do git.
+
+O compiler é `@next/mdx` com o pipeline Rust (`experimental.mdxRs`). Isso traz GFM e velocidade. Também significa: sem plugins rehype/remark a menos que eu volte para o compiler JS. Aceitei a restrição de propósito: syntax highlight vem do [`sugar-high`](https://github.com/huozhi/sugar-high) em `mdx-components.tsx`, não de uma pilha de plugins.
+
+```ts
+const nextConfig = {
+  pageExtensions: ['mdx', 'ts', 'tsx'],
+  experimental: { mdxRs: { mdxType: 'gfm' } }
+}
+```
+
+Inglês e português são árvores irmãs (`app/en/...`, `app/pt/...`). Duplicação é honesta: tradução é um segundo texto, não uma chave num JSON que ninguém revisa.
+
+## O que eu recusei
+
+- **Contentlayer / Velite** — schema extra para dez posts é build que eu não quero debugar às 23h.
+- **MDX remoto de banco** — o ponto deste site é git como fonte da verdade. RSC carrega MDX do disco; não precisa de round trip.
+- **Blog engine próprio** — o [`next-mdx-blog`](https://github.com/leerob/next-mdx-blog) já tinha as partes chatas: metadata, sitemap, `useMDXComponents`.
+
+O visual é uma coluna de ~42rem, Poppins, `prefers-color-scheme`. O site deveria sair da frente para as palavras e os snippets fazerem o trabalho.
+
+## Referências
+
+- [Next.js: MDX](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+- [MDX](https://mdxjs.com/)
+- [App Router: metadata files](https://nextjs.org/docs/app/getting-started/metadata-and-og-images)
+- [leerob/next-mdx-blog](https://github.com/leerob/next-mdx-blog)
+- [sugar-high](https://github.com/huozhi/sugar-high)

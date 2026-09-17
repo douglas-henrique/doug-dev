@@ -1,0 +1,42 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Code review',
+  description: desc('en/n/code-review'),
+  alternates: {
+    canonical: '/en/n/code-review',
+    languages: {
+      en: '/en/n/code-review',
+      pt: '/pt/n/code-review',
+      'x-default': '/en/n/code-review'
+    }
+  }
+};
+
+# Code review
+
+[Douglas Pereira](/en)
+
+## Review the change, not the person
+
+- Ask why before you ask for a rewrite
+- Nitpicks go last, or in a separate pass
+- If you would not block on it, do not use blocking language
+
+## Speed matters here too
+
+- A PR that sits for days is already stale
+- Small diffs get real review
+- Giant diffs get a shrug and an approve
+
+## Teach in the comment
+
+- Link to the pattern
+- Show the version you would merge
+- Future readers of the thread were not in your head
+
+## Approve when it is better
+
+- Perfect is how work dies in review
+- Leave the follow-up as a ticket if it is not this change
+- Your job is to land good work, not to win the comment box

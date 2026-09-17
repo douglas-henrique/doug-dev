@@ -1,0 +1,52 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'A stack chata ainda ganha',
+  description: desc('pt/blog/boring-stack'),
+  alternates: {
+    canonical: '/pt/blog/boring-stack',
+    languages: {
+      en: '/en/blog/boring-stack',
+      pt: '/pt/blog/boring-stack',
+      'x-default': '/en/blog/boring-stack'
+    }
+  }
+};
+
+# A stack chata ainda ganha
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-06-01" headline="A stack chata ainda ganha" path="/pt/blog/boring-stack">Junho 2026</PostDate>
+
+Eu gosto de ferramenta nova. Também gosto de entregar numa terça. O [Choose Boring Technology](https://mcfunley.com/choose-boring-technology) do Dan McKinley ainda nomeia a restrição: você ganha uns três "innovation tokens." Gasta no problema que é seu, não no banco que está no Twitter.
+
+## Postgres como default
+
+Dado relacional, JSON quando precisa, `LISTEN/NOTIFY` antes de comprar fila, full-text antes de comprar cluster de busca. A [doc do Postgres](https://www.postgresql.org/docs/current/) é o produto. SQLite é o mesmo argumento na borda e no teste ([when to use SQLite](https://www.sqlite.org/whentouse.html)).
+
+Store novidade não salva modelo embaçado. Store conhecido não condena modelo afiado. [Hyrum's Law](https://www.hyrumslaw.com/) vale para ORM também: o schema implícito vira estrutural mesmo se você não versionou.
+
+## TypeScript como cinto, não religião
+
+Eu quero exaustividade em union, não um tipo de 400 linhas para provar que `string` é `string`. `strict` ligado. Evita `any` na borda (HTTP, env, `JSON.parse`). É ali que o bug mora, não no `map`.
+
+```ts
+type Result<T, E = Error> =
+  | { ok: true; value: T }
+  | { ok: false; error: E }
+```
+
+Um Result num módulo é mais barato do que um sistema de effects no app inteiro.
+
+## A plataforma que você já paga
+
+Next.js, Vercel ou o host da vez, o browser. Eu não quero um segundo runtime de plantão em espírito. Chato significa: grep funciona, Stack Overflow existe, o pager é do *nosso* código.
+
+## Referências
+
+- [Dan McKinley, *Choose Boring Technology*](https://mcfunley.com/choose-boring-technology)
+- [PostgreSQL documentation](https://www.postgresql.org/docs/current/)
+- [SQLite: Appropriate Uses](https://www.sqlite.org/whentouse.html)
+- [Hyrum's Law](https://www.hyrumslaw.com/)
+- [TypeScript Handbook: Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)

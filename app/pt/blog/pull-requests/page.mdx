@@ -1,0 +1,53 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'O que eu procuro num pull request',
+  description: desc('pt/blog/pull-requests'),
+  alternates: {
+    canonical: '/pt/blog/pull-requests',
+    languages: {
+      en: '/en/blog/pull-requests',
+      pt: '/pt/blog/pull-requests',
+      'x-default': '/en/blog/pull-requests'
+    }
+  }
+};
+
+# O que eu procuro num pull request
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-05-01" headline="O que eu procuro num pull request" path="/pt/blog/pull-requests">Maio 2026</PostDate>
+
+Eu leio a descrição primeiro. Se eu ainda não sei o que mudou e por quê, eu pulo. As práticas de eng da Google dizem a mesma coisa em linguagem mais seca: review que começa no diff sem intenção é mais lento e mais grosso.
+
+## Tamanho é a variável que você controla
+
+Bacchelli e Bird (*Expectations, Outcomes, and Challenges of Modern Code Review*, ICSE 2013) e estudos depois na Microsoft rimam: a qualidade do review cai quando o diff cresce. Eu não tenho número mágico. Tenho um cheiro: se eu não seguro a mudança na memória de trabalho, vou carimbar o arquivo arriscado.
+
+Quebra prática:
+
+- Schema / contrato num PR
+- Comportamento que consome no seguinte
+- Commit só de format nunca misturado com lógica
+
+## Comentário tem protocolo
+
+Eu uso [Conventional Comments](https://conventionalcomments.org/) porque "nit:" vs "blocking:" é a cultura inteira. Se eu não seguraria o merge, eu não escrevo como se segurasse. Nitpick por último. "Have you considered" sem patch não é review; é vibe.
+
+```
+blocking: isso cobra duas vezes no retry
+nit: renomeia `tmp` para `invoiceId`
+```
+
+## O teste é parte da interface
+
+PR sem história failing-first me faz rastrear na mão. Eu quero a assertion que nomeia o invariante (idempotência, authz, "não vaza o outro tenant"). % de cobertura é métrica vaidade; o Google Testing Blog fala isso há anos.
+
+## Referências
+
+- [Google Engineering Practices: Code Review](https://google.github.io/eng-practices/review/)
+- [Conventional Comments](https://conventionalcomments.org/)
+- Bacchelli & Bird, *Expectations, Outcomes, and Challenges of Modern Code Review* (ICSE 2013)
+- [SmartBear: Best Practices for Code Review](https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/)
+- [Google Testing Blog](https://testing.googleblog.com/)

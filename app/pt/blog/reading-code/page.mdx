@@ -1,0 +1,49 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Ler código é o trabalho',
+  description: desc('pt/blog/reading-code'),
+  alternates: {
+    canonical: '/pt/blog/reading-code',
+    languages: {
+      en: '/en/blog/reading-code',
+      pt: '/pt/blog/reading-code',
+      'x-default': '/en/blog/reading-code'
+    }
+  }
+};
+
+# Ler código é o trabalho
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-01-01" headline="Ler código é o trabalho" path="/pt/blog/reading-code">Janeiro 2026</PostDate>
+
+A gente entrevista quem escreve função no quadro. Depois contrata para um repo em que a pessoa vai passar a maior parte das horas lendo. O *The Programmer's Brain* da Felienne Hermans é direto: memória de trabalho é pequena; código não é.
+
+## Um loop, não uma vibe
+
+Os characterization tests do Michael Feathers existem para você mudar o que ainda não entende: trava comportamento, depois refatora. Eu faço a versão barata:
+
+1. `rg` no nome até a definição, não no primeiro import
+2. `git blame` / `git log -S` para o *porquê* do branch estranho
+3. Desenha o call path no papel se cruzar mais de três módulos
+4. Escreve o invariante que eu acho verdadeiro, depois tento quebrar
+
+O *Code Reading* do Diomidis Spinellis está datado de ferramenta e certo de método: top-down para arquitetura, bottom-up para o bug.
+
+## Agentes deixaram isso mais alto
+
+Eles produzem 400 linhas antes do almoço. Alguém ainda precisa saber se essas linhas pertencem. Digitar nunca foi escasso. Atenção era. Se você não narra o caminho feliz e o de falha, o review não acabou — o seu ou o do modelo.
+
+## Ferramentas que eu de fato uso
+
+`rg`, call hierarchy do language server, o teste que nomeia o comportamento, o erro de tipo. Debugger quando o dado é mentira. Eu não começo com gerador de UML.
+
+## Referências
+
+- Felienne Hermans, *The Programmer's Brain* (Manning)
+- Michael Feathers, *Working Effectively with Legacy Code*
+- Diomidis Spinellis, *Code Reading*
+- [Git: git-log -S / pickaxe](https://git-scm.com/docs/git-log#Documentation/git-log.txt--Sltstringgt)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)

@@ -1,0 +1,39 @@
+import { notes, blogPosts } from '@/lib/content'
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  description: desc('pt/home'),
+  alternates: {
+    canonical: '/pt',
+    languages: {
+      en: '/en',
+      pt: '/pt',
+      'x-default': '/en'
+    }
+  }
+};
+
+export const shortBio =
+  'Sou engenheiro e escritor. Construo software, lidero times e escrevo sobre o que vou aprendendo.';
+
+export const longBio = `Sou engenheiro e escritor. Construo software, lidero times e escrevo sobre o que vou aprendendo.
+
+Trabalho como tech lead no Brasil. Me importa tornar tecnologia fácil de entender — entregar produto, escrever as coisas e ensinar no caminho. Ultimamente tenho passado mais tempo com IA, inclusive sistemas de RAG e as ferramentas em volta.
+
+Este site é minhas notas, textos e trabalho.`;
+
+<Wordmark>Douglas Pereira</Wordmark>
+
+<Bio
+  short={shortBio}
+  long={longBio}
+  labels={{ bio: 'Bio', default: 'Padrão', long: 'Longa' }}
+/>
+
+## Notas
+
+<NoteList notes={notes.pt} />
+
+## Blog
+
+<PostList pageParam="posts" posts={blogPosts.pt} />

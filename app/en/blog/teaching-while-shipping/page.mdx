@@ -1,0 +1,50 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Teaching is part of shipping',
+  description: desc('en/blog/teaching-while-shipping'),
+  alternates: {
+    canonical: '/en/blog/teaching-while-shipping',
+    languages: {
+      en: '/en/blog/teaching-while-shipping',
+      pt: '/pt/blog/teaching-while-shipping',
+      'x-default': '/en/blog/teaching-while-shipping'
+    }
+  }
+};
+
+# Teaching is part of shipping
+
+<Author href="/en" />
+
+<PostDate dateTime="2026-04-01" headline="Teaching is part of shipping" path="/en/blog/teaching-while-shipping">April 2026</PostDate>
+
+If only one person can deploy it, you did not ship it. You rented it to that person's calendar. Bus factor is not a metaphor; it is a SLO.
+
+## Diátaxis, not a wiki blob
+
+[Diátaxis](https://diataxis.fr/) splits docs into tutorial, how-to, reference, explanation. Mixing them is why READMEs rot. The feature is not done until there is:
+
+- a how-to for the happy path (copy-pasteable)
+- a reference for flags, env, failure codes
+- a runbook sentence for 6pm: command, expected output, rollback
+
+The [SRE book](https://sre.google/sre-book/table-of-contents/) treats this as production, not "nice to have." If the dashboard is the only explanation, you documented a screenshot.
+
+## Write it while the graph is still in your head
+
+I used to treat the write-up as extra after the flag went out. Now it is the definition of done. Explaining the flag is how I notice the default is inverted and the name is a joke.
+
+A short architecture note beats a Confluence novel: context, decision, consequences — the [ADR](https://adr.github.io/) shape, even if the file is 20 lines in `docs/`.
+
+## Teaching is a test
+
+If I cannot explain the auth boundary without opening the code, the boundary is not in the types. Pairing and a recorded walkthrough are cheaper than a 2am page for the next person.
+
+## References
+
+- [Diátaxis](https://diataxis.fr/) — Daniele Procida
+- [Google SRE Book](https://sre.google/sre-book/table-of-contents/)
+- [Architecture Decision Records](https://adr.github.io/)
+- [Write the Docs](https://www.writethedocs.org/)
+- [12-factor: config and admin processes](https://12factor.net/)

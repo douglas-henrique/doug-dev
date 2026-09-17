@@ -1,0 +1,53 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Why I rebuilt this site in MDX',
+  description: desc('en/blog/rebuilding-this-site'),
+  alternates: {
+    canonical: '/en/blog/rebuilding-this-site',
+    languages: {
+      en: '/en/blog/rebuilding-this-site',
+      pt: '/pt/blog/rebuilding-this-site',
+      'x-default': '/en/blog/rebuilding-this-site'
+    }
+  }
+};
+
+# Why I rebuilt this site in MDX
+
+<Author href="/en" />
+
+<PostDate dateTime="2026-09-01" headline="Why I rebuilt this site in MDX" path="/en/blog/rebuilding-this-site">September 2026</PostDate>
+
+I wanted a site I would actually write in. Not a CMS, not a component forest. A page is a folder with a `page.mdx`. If the sentence is wrong, I change the sentence and ship.
+
+## File-system routing is the CMS
+
+Next.js App Router already maps folders to URLs. MDX on top of that means the content *is* the route. No slug table, no preview iframe, no "publish" button that can drift from git.
+
+The compiler is `@next/mdx` with the Rust MDX pipeline (`experimental.mdxRs`). That buys GFM and speed. It also means no rehype/remark plugins unless I drop back to the JS compiler. I accepted that constraint on purpose: syntax highlighting comes from [`sugar-high`](https://github.com/huozhi/sugar-high) in `mdx-components.tsx`, not from a plugin stack.
+
+```ts
+const nextConfig = {
+  pageExtensions: ['mdx', 'ts', 'tsx'],
+  experimental: { mdxRs: { mdxType: 'gfm' } }
+}
+```
+
+English and Portuguese are sibling trees (`app/en/...`, `app/pt/...`). Duplication is honest: a translation is a second piece of writing, not a key in a JSON blob that nobody proofreads.
+
+## What I refused
+
+- **Contentlayer / Velite** — extra schema for ten posts is a build I do not want to debug at 11pm.
+- **MDX remote from a database** — the point of this site is that git is the source of truth. RSC can load MDX from disk; it does not need a round trip.
+- **A custom blog engine** — [`next-mdx-blog`](https://github.com/leerob/next-mdx-blog) already had the boring parts: metadata, sitemap, `useMDXComponents`.
+
+The design is a ~42rem column, Poppins, `prefers-color-scheme`. The site should get out of the way so the words and the snippets can do the work.
+
+## References
+
+- [Next.js: MDX](https://nextjs.org/docs/app/building-your-application/configuring/mdx)
+- [MDX](https://mdxjs.com/)
+- [App Router: metadata files](https://nextjs.org/docs/app/getting-started/metadata-and-og-images)
+- [leerob/next-mdx-blog](https://github.com/leerob/next-mdx-blog)
+- [sugar-high](https://github.com/huozhi/sugar-high)

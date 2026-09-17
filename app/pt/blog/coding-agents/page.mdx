@@ -1,0 +1,60 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Agentes de código e o tamanho da tarefa',
+  description: desc('pt/blog/coding-agents'),
+  alternates: {
+    canonical: '/pt/blog/coding-agents',
+    languages: {
+      en: '/en/blog/coding-agents',
+      pt: '/pt/blog/coding-agents',
+      'x-default': '/en/blog/coding-agents'
+    }
+  }
+};
+
+# Agentes de código e o tamanho da tarefa
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-08-01" headline="Agentes de código e o tamanho da tarefa" path="/pt/blog/coding-agents">Agosto 2026</PostDate>
+
+Agentes são bons quando a caixa é pequena. Falham quando a caixa é uma discussão de produto que você ainda não teve.
+
+## Contexto é memória de trabalho
+
+Um agente de código não "conhece" o repo. Ele tem uma janela de contexto e o que você enfiou nela: o arquivo, o teste, o erro, o invariante. O [SWE-bench](https://www.swebench.com/) tornou isso mensurável: issues reais do GitHub, não funções de brinquedo. O SWE-bench Verified apertou os rótulos para "o modelo corrigiu" significar que um humano concordaria que o teste é o teste certo.
+
+Tradução prática: se o agente não vê a assertion falhando e a função de produção no mesmo turno, ele inventa uma API. Eu trato o prompt como ticket que eu daria a um júnior.
+
+- Um resultado
+- Um diretório
+- Um comando que prova que acabou (`pnpm test path/to/file`)
+
+```ts
+type Brief = {
+  files: string[]
+  failCommand: string
+  invariant: string
+}
+```
+
+Se eu não consigo preencher `Brief`, eu não ligo o agente. Ainda estou em produto.
+
+## Git é o loop de eval
+
+O eval barato não é um harness custom. É `git diff`, o typechecker e o teste que já existia. O framing de loop do Karpathy ainda vale: gera, roda, lê a falha, gera de novo. O modelo é a proposta. O repo é o juiz.
+
+Eu também mantenho a tarefa numa branch com superfície pequena. Um refactor de 400 linhas não relacionado no mesmo PR envenena o sinal. Você não distingue se o agente errou ou se você pediu dois empregos.
+
+## O que eu não terceirizo
+
+Arquitetura, threat model, "isso deveria existir." Isso não é digitação. SWE-bench mede patch contra spec que já existe numa issue. A maior parte dos meus erros é spec que nunca existiu.
+
+## Referências
+
+- [SWE-bench](https://www.swebench.com/) — Jimenez et al., *SWE-bench: Can Language Models Resolve Real-World GitHub Issues?* (ICLR 2024)
+- [SWE-bench Verified](https://openai.com/index/introducing-swe-bench-verified/)
+- [Andrej Karpathy on the LLM loop](https://twitter.com/karpathy)
+- [Anthropic: Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+- [Git documentation: diff](https://git-scm.com/docs/git-diff)

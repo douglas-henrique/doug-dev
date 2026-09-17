@@ -29,6 +29,14 @@ const nextConfig: NextConfig = {
   // the `experimental.mdxRs` flag.
   experimental: {
     mdxRs: { mdxType: 'gfm' }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'opengraph.githubassets.com'
+      }
+    ]
   }
  };
 

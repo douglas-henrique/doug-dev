@@ -1,0 +1,52 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'The boring stack still wins',
+  description: desc('en/blog/boring-stack'),
+  alternates: {
+    canonical: '/en/blog/boring-stack',
+    languages: {
+      en: '/en/blog/boring-stack',
+      pt: '/pt/blog/boring-stack',
+      'x-default': '/en/blog/boring-stack'
+    }
+  }
+};
+
+# The boring stack still wins
+
+<Author href="/en" />
+
+<PostDate dateTime="2026-06-01" headline="The boring stack still wins" path="/en/blog/boring-stack">June 2026</PostDate>
+
+I like new tools. I also like shipping on a Tuesday. Dan McKinley's [Choose Boring Technology](https://mcfunley.com/choose-boring-technology) still names the constraint: you get about three "innovation tokens." Spend them on the problem that is actually yours, not on the database everyone is tweeting.
+
+## Postgres as the default
+
+Relational data, JSON when you must, `LISTEN/NOTIFY` before you buy a queue, full-text before you buy a search cluster. The [Postgres docs](https://www.postgresql.org/docs/current/) are the product. SQLite is the same argument at the edge and in tests ([when to use SQLite](https://www.sqlite.org/whentouse.html)).
+
+A novel store will not save a fuzzy data model. A familiar one will not doom a sharp one. [Hyrum's Law](https://www.hyrumslaw.com/) applies to ORMs too: your implicit schema becomes load-bearing whether you versioned it or not.
+
+## TypeScript as a seatbelt, not a religion
+
+I want exhaustiveness on unions, not a 400-line type to prove `string` is `string`. `strict` on. Avoid `any` at boundaries (HTTP, env, `JSON.parse`). That is where bugs live, not in your `map`.
+
+```ts
+type Result<T, E = Error> =
+  | { ok: true; value: T }
+  | { ok: false; error: E }
+```
+
+A Result type in one module is cheaper than an effects system across the app.
+
+## The platform you already pay for
+
+Next.js, Vercel or whatever hosts the thing, the browser. I do not want a second runtime on-call in spirit. Boring means: grep works, Stack Overflow exists, the pager is for *our* code.
+
+## References
+
+- [Dan McKinley, *Choose Boring Technology*](https://mcfunley.com/choose-boring-technology)
+- [PostgreSQL documentation](https://www.postgresql.org/docs/current/)
+- [SQLite: Appropriate Uses](https://www.sqlite.org/whentouse.html)
+- [Hyrum's Law](https://www.hyrumslaw.com/)
+- [TypeScript Handbook: Narrowing](https://www.typescriptlang.org/docs/handbook/2/narrowing.html)

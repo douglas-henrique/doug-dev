@@ -1,0 +1,52 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Deixa o side project pequeno',
+  description: desc('pt/blog/small-tools'),
+  alternates: {
+    canonical: '/pt/blog/small-tools',
+    languages: {
+      en: '/en/blog/small-tools',
+      pt: '/pt/blog/small-tools',
+      'x-default': '/en/blog/small-tools'
+    }
+  }
+};
+
+# Deixa o side project pequeno
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-02-01" headline="Deixa o side project pequeno" path="/pt/blog/small-tools">Fevereiro 2026</PostDate>
+
+O cemitério está cheio de CRM pessoal. Eu comecei três. Nenhum era problema de CRM. Era problema de "eu queria me sentir construindo empresa."
+
+## Unix, não plataforma
+
+A [filosofia Unix](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html) ainda ganha em software pessoal: uma coisa, texto para dentro e para fora, composição. Um script que renomeia arquivo vive mais que um dashboard com OAuth. O [*Worse is Better*](https://www.dreamsongs.com/WorseIsBetter.html) do Richard Gabriel é o gêmeo desconfortável: a coisa um pouco pior e menor entrega e é usada.
+
+O [llm CLI](https://llm.datasette.io/) do Simon Willison é o formato que eu copio: ferramenta que você roda, não produto que você onboarda.
+
+## Hardcoded é feature
+
+Um usuário é mercado válido. Auth é como side project morre. Se o dado é JSON em `$HOME`, você dá grep. Se o dado é modelo de tenancy, você está no trabalho.
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+# duas flags. sem objeto de config.
+```
+
+Termina a versão minúscula. Usa por um mês. Só então decide se ela quer Postgres.
+
+## Escopo que sobrevive a emprego
+
+Quando a ideia pede cobrança, roadmap e status page, é segundo emprego sem plano de saúde. Guarda o experimento interessante num repo que você apaga na sexta sem migration.
+
+## Referências
+
+- [The Unix Philosophy](https://homepage.cs.uri.edu/~thenry/resources/unix_art/ch01s06.html) — *The Art of Unix Programming*, ESR
+- [Richard P. Gabriel, *Worse is Better*](https://www.dreamsongs.com/WorseIsBetter.html)
+- [Simon Willison, llm](https://llm.datasette.io/)
+- [cat-v.org: Unix](http://www.cat-v.org/)
+- [SQLite: Appropriate Uses](https://www.sqlite.org/whentouse.html)

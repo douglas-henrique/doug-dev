@@ -1,0 +1,58 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Complexity has to earn its place',
+  description: desc('en/blog/complexity-budget'),
+  alternates: {
+    canonical: '/en/blog/complexity-budget',
+    languages: {
+      en: '/en/blog/complexity-budget',
+      pt: '/pt/blog/complexity-budget',
+      'x-default': '/en/blog/complexity-budget'
+    }
+  }
+};
+
+# Complexity has to earn its place
+
+<Author href="/en" />
+
+<PostDate dateTime="2026-07-01" headline="Complexity has to earn its place" path="/en/blog/complexity-budget">July 2026</PostDate>
+
+Every abstraction is a loan. You pay interest on onboarding, on the debugger lying, on the "flexible" module that needs a one-off.
+
+## Essential vs accidental
+
+Brooks split complexity into essential (the problem) and accidental (the machine). [Moseley and Marks](https://curtclifton.net/papers/MoseleyMarks06a.pdf) pushed this further in *Out of the Tar Pit*: state and control flow are where accidental complexity hides. More layers often add state, not less.
+
+Rich Hickey's [Simple Made Easy](https://www.infoq.com/presentations/Simple-Made-Easy/) is the complementary test: simple means unentangled, not familiar. A service mesh you already know can still braid networking, auth, and deploys into one blob you cannot change independently.
+
+## A budget, not a vibe
+
+I ask three questions before a new package or pattern:
+
+1. What do we delete if this is wrong in 90 days?
+2. How many files must change to add the next similar feature?
+3. Can a new teammate grep the name and find the truth?
+
+If (1) is "a rewrite" and (2) is "half the repo," the abstraction failed the budget. Duplication across two call sites is cheaper than a shared kernel with one caller.
+
+```ts
+// connascence of algorithm: both must change together
+function priceA(n: number) { return n * 1.1 }
+function priceB(n: number) { return n * 1.1 }
+```
+
+That duplication is honest. A `PricingStrategyFactory` for two SKUs is not.
+
+## Allowed complexity
+
+Caches, queues, and multi-tenant isolation are real. They earn rent when you can name the failure mode they prevent (thundering herd, dual-write, noisy neighbor) and the metric that would tell you to remove them.
+
+## References
+
+- Brooks, *The Mythical Man-Month* — essential vs accidental complexity
+- [Moseley & Marks, *Out of the Tar Pit* (2006)](https://curtclifton.net/papers/MoseleyMarks06a.pdf)
+- [Rich Hickey, *Simple Made Easy*](https://www.infoq.com/presentations/Simple-Made-Easy/)
+- [Connascence](https://connascence.io/) — Meilir Page-Jones
+- [Hyrum's Law](https://www.hyrumslaw.com/)

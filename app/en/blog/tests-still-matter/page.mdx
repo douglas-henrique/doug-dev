@@ -1,0 +1,53 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'I still write tests',
+  description: desc('en/blog/tests-still-matter'),
+  alternates: {
+    canonical: '/en/blog/tests-still-matter',
+    languages: {
+      en: '/en/blog/tests-still-matter',
+      pt: '/pt/blog/tests-still-matter',
+      'x-default': '/en/blog/tests-still-matter'
+    }
+  }
+};
+
+# I still write tests
+
+<Author href="/en" />
+
+<PostDate dateTime="2025-12-01" headline="I still write tests" path="/en/blog/tests-still-matter">December 2025</PostDate>
+
+Not a cathedral of mocks. Not 90% coverage as a religion. A few tests that fail when the thing I care about breaks.
+
+## Pyramid, trophy, whatever — pick the expensive bugs
+
+Fowler's [test pyramid](https://martinfowler.com/articles/practical-test-pyramid.html) still explains cost: many fast unit tests, fewer integrated, few e2e. Kent C. Dodds' [testing trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) shifts weight to integration with [Testing Library](https://testing-library.com/docs/guiding-principles) because the user does not click a mock.
+
+I write the test I want at 11pm: given this input, the user sees this, we do not charge twice, the other tenant is not in the JSON.
+
+```ts
+test('does not charge twice on retry', async () => {
+  await charge(invoice)
+  await charge(invoice)
+  expect(await payments.count(invoice.id)).toBe(1)
+})
+```
+
+The agent will happily assert that a mock returned a mock. That test is a compliment to the mock. [Don't mock what you don't own](https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html) still applies.
+
+## Determinism or delete it
+
+Time, network, randomness: inject them. Flakes train the team to ignore red. If the suite is slow, I delete tests, I do not delete the suite. A mean little suite beats a museum.
+
+Property tests (fast-check, Hypothesis) when the invariant is algebraic (parse/print, order independence). One property can replace a handful of examples — not the other way around.
+
+## References
+
+- [Martin Fowler, *The Practical Test Pyramid*](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Kent C. Dodds, *The Testing Trophy*](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
+- [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles)
+- [Google Testing Blog: Don't mock types you don't own](https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html)
+- Kent Beck, *Test-Driven Development: By Example*
+- [fast-check](https://github.com/dubzzz/fast-check)

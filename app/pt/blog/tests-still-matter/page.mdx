@@ -1,0 +1,53 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Eu ainda escrevo testes',
+  description: desc('pt/blog/tests-still-matter'),
+  alternates: {
+    canonical: '/pt/blog/tests-still-matter',
+    languages: {
+      en: '/en/blog/tests-still-matter',
+      pt: '/pt/blog/tests-still-matter',
+      'x-default': '/en/blog/tests-still-matter'
+    }
+  }
+};
+
+# Eu ainda escrevo testes
+
+<Author href="/pt" />
+
+<PostDate dateTime="2025-12-01" headline="Eu ainda escrevo testes" path="/pt/blog/tests-still-matter">Dezembro 2025</PostDate>
+
+Não uma catedral de mock. Não 90% de cobertura como religião. Alguns testes que quebram quando a coisa que me importa quebra.
+
+## Pirâmide, troféu, tanto faz — pega o bug caro
+
+A [pirâmide de testes](https://martinfowler.com/articles/practical-test-pyramid.html) do Fowler ainda explica custo: muitos unitários rápidos, menos integrados, poucos e2e. O [testing trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) do Kent C. Dodds desloca peso para integração com [Testing Library](https://testing-library.com/docs/guiding-principles) porque o usuário não clica em mock.
+
+Eu escrevo o teste que eu queria às 23h: com esta entrada, o usuário vê isto, a gente não cobra duas vezes, o outro tenant não está no JSON.
+
+```ts
+test('não cobra duas vezes no retry', async () => {
+  await charge(invoice)
+  await charge(invoice)
+  expect(await payments.count(invoice.id)).toBe(1)
+})
+```
+
+O agente afirma de boa que o mock devolveu o mock. Esse teste é um elogio ao mock. [Don't mock what you don't own](https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html) ainda vale.
+
+## Determinismo ou apaga
+
+Tempo, rede, aleatoriedade: injeta. Flake treina o time a ignorar vermelho. Se a suíte está lenta, eu apago teste, não apago a suíte. Uma suíte pequena e maldosa ganha de museu.
+
+Property test (fast-check, Hypothesis) quando o invariante é algébrico (parse/print, ordem irrelevante). Uma property pode trocar um punhado de exemplos — não o contrário.
+
+## Referências
+
+- [Martin Fowler, *The Practical Test Pyramid*](https://martinfowler.com/articles/practical-test-pyramid.html)
+- [Kent C. Dodds, *The Testing Trophy*](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)
+- [Testing Library: Guiding Principles](https://testing-library.com/docs/guiding-principles)
+- [Google Testing Blog: Don't mock types you don't own](https://testing.googleblog.com/2020/07/testing-on-toilet-dont-mock-types-you.html)
+- Kent Beck, *Test-Driven Development: By Example*
+- [fast-check](https://github.com/dubzzz/fast-check)

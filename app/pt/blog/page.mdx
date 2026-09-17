@@ -1,0 +1,19 @@
+import { blogPosts } from '@/lib/content'
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Blog',
+  description: desc('pt/blog'),
+  alternates: {
+    canonical: '/pt/blog',
+    languages: {
+      en: '/en/blog',
+      pt: '/pt/blog',
+      'x-default': '/en/blog'
+    }
+  }
+};
+
+# Blog
+
+<PostList showAuthor posts={blogPosts.pt} />

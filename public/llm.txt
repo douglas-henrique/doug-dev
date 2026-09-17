@@ -1,0 +1,39 @@
+# Douglas Pereira
+
+> Engineer, writer, and tech lead in Brazil. I write notes, dated technical posts, and keep a short list of work I still point people at.
+
+This site is bilingual. English URLs live under `/en`. Portuguese under `/pt`. The photo used for Open Graph and schema is https://www.dougdev.com.br/douglas.png
+
+## Notes
+
+- [Things I believe](https://www.dougdev.com.br/en/n/beliefs): Working notes on shipping, writing, tools that disappear, and leading by doing the work.
+- [Understanding AI](https://www.dougdev.com.br/en/n/ai): AI as a tool, not a teammate: context windows, the skill of the question, and keeping taste.
+- [Developer experience](https://www.dougdev.com.br/en/n/dx): Developer experience as respect: obvious happy paths, fast feedback, docs as the product.
+- [Shipping](https://www.dougdev.com.br/en/n/shipping): Land it. Shrink the first version. The loop is the strategy; momentum compounds.
+- [Clear writing](https://www.dougdev.com.br/en/n/writing): Writing is thinking. Notes beat memory. Direct is not rude.
+- [Personal software](https://www.dougdev.com.br/en/n/personal-software): One user is a valid market. Small on purpose. Personal software is how you keep taste.
+- [Code review](https://www.dougdev.com.br/en/n/code-review): Review the change, not the person. Small diffs, comments that teach, approve when it is better.
+- [Product engineers](https://www.dougdev.com.br/en/n/product-engineers): Own the outcome. Design is not a handoff. Taste is the differentiator.
+- [Documentation](https://www.dougdev.com.br/en/n/docs): Write the beginner path. Tutorials are not reference. Keep docs next to the code.
+- [Leading engineers](https://www.dougdev.com.br/en/n/leading): Still do the work. Clarity is the gift. Hire for slope; make others louder.
+
+## Blog
+
+- [Why I rebuilt this site in MDX](https://www.dougdev.com.br/en/blog/rebuilding-this-site): Why this site is file-based MDX on the Next.js App Router, with no CMS and a Rust MDX compiler.
+- [Coding agents and the size of the task](https://www.dougdev.com.br/en/blog/coding-agents): Treat coding agents like juniors: small briefs, git as the eval loop, and SWE-bench as the benchmark.
+- [Complexity has to earn its place](https://www.dougdev.com.br/en/blog/complexity-budget): Abstractions are loans. Essential vs accidental complexity, connascence, and when a layer must pay rent.
+- [The boring stack still wins](https://www.dougdev.com.br/en/blog/boring-stack): Innovation tokens, Postgres as default, TypeScript at boundaries — why the boring stack still ships on Tuesday.
+- [What I look for in a pull request](https://www.dougdev.com.br/en/blog/pull-requests): What I read first in a PR: intent, diff size, Conventional Comments, and tests that name the invariant.
+- [Teaching is part of shipping](https://www.dougdev.com.br/en/blog/teaching-while-shipping): A feature is not shipped until the how-to, reference, and 6pm runbook exist. Diátaxis, ADRs, bus factor.
+- [The CSS I actually use](https://www.dougdev.com.br/en/blog/css-i-use): The CSS I actually reach for: grid and subgrid, @layer, container queries, light-dark(), text-wrap.
+- [Keep the side project small](https://www.dougdev.com.br/en/blog/small-tools): Unix philosophy for side projects: one job, no auth, hardcoded is a feature. Worse is Better.
+- [Reading code is the job](https://www.dougdev.com.br/en/blog/reading-code): Reading is the job. Characterization tests, git pickaxe, call paths, and why agents made attention scarce.
+- [I still write tests](https://www.dougdev.com.br/en/blog/tests-still-matter): A mean little suite beats a museum of mocks. Pyramid vs trophy, determinism, and tests that fail at 11pm.
+
+## Work
+
+- [Work](https://www.dougdev.com.br/en/work): Selected repositories: a Python RAG stack, a Next.js template, and an Expo Router starter.
+
+## Portuguese
+
+The same pages exist in Portuguese. Swap `/en` for `/pt` in any URL above, or start at https://www.dougdev.com.br/pt

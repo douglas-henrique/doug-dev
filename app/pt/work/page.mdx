@@ -1,0 +1,44 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Meu trabalho',
+  description: desc('pt/work'),
+  alternates: {
+    canonical: '/pt/work',
+    languages: {
+      en: '/en/work',
+      pt: '/pt/work',
+      'x-default': '/en/work'
+    }
+  }
+};
+
+# Meu trabalho
+
+<Author href="/pt" />
+
+Repos públicos para os quais eu ainda mando gente. O que importa é a restrição de cada um — retrieval, um starter que outras pessoas de fato clonaram, rotas mobile por arquivo — não uma galeria de print.
+
+## Contexta
+
+Uma stack de retrieval-augmented generation em dois repos: um serviço Python que é dono de chunking, embeddings e busca, e um client TypeScript que fala com ele. A cisão é o ponto. O modelo nunca vê o corpus inteiro; a API devolve os trechos que o prompt pode usar.
+
+Eu ligo mais para o contrato de retrieval do que para a UI de chat: o que é indexado, como pontua, o que acontece quando o índice está vazio. O client fica fino para trocar o backend sem reescrever o produto.
+
+<GitHubCard repo="douglas-henrique/contexta" />
+
+<GitHubCard repo="douglas-henrique/contexta-client" />
+
+## Next.js complete boilerplate
+
+Um template, não um app de demo. Next.js 12.3 com SWC, Styled Components, Jest, Testing Library, ESLint, Prettier e geradores [Plop](https://plopjs.com/) para página ou componente novo ser um prompt, não copy-paste de pasta.
+
+Está marcado como template no GitHub (~54 stars, 7 forks). Esse foi o teste que importou: outras pessoas começaram repo a partir dele. MDX já estava na stack — a mesma aposta deste site, alguns anos antes.
+
+<GitHubCard repo="douglas-henrique/nextjs-complete-boilerplate" />
+
+## Expo Router + Nativewind
+
+Starter mobile com Expo Router (rotas por arquivo, a mesma ideia do App Router) e Nativewind (tokens Tailwind no React Native). TypeScript desde o primeiro arquivo. O objetivo era um repo que você clona e já tem navegação, estilo e tipos — não um `expo init` em branco mais três posts de blog.
+
+<GitHubCard repo="douglas-henrique/expo-router-ts-nativewind" />

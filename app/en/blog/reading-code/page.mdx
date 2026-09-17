@@ -1,0 +1,49 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Reading code is the job',
+  description: desc('en/blog/reading-code'),
+  alternates: {
+    canonical: '/en/blog/reading-code',
+    languages: {
+      en: '/en/blog/reading-code',
+      pt: '/pt/blog/reading-code',
+      'x-default': '/en/blog/reading-code'
+    }
+  }
+};
+
+# Reading code is the job
+
+<Author href="/en" />
+
+<PostDate dateTime="2026-01-01" headline="Reading code is the job" path="/en/blog/reading-code">January 2026</PostDate>
+
+We interview for people who can write a function on a whiteboard. Then we hire them into a repo they will spend most hours reading. Felienne Hermans' *The Programmer's Brain* is blunt about this: working memory is small; code is not.
+
+## A loop, not a vibe
+
+Michael Feathers' characterization tests exist so you can change what you do not yet understand: lock behavior, then refactor. I do the cheap version:
+
+1. `rg` the name until the definition, not the first import
+2. `git blame` / `git log -S` for *why* the weird branch exists
+3. Draw the call path on paper if it crosses more than three modules
+4. Write the invariant I think is true, then try to break it
+
+Diomidis Spinellis' *Code Reading* is dated in tooling and still right in method: read top-down for architecture, bottom-up for the bug.
+
+## Agents made this louder
+
+They can produce 400 lines before lunch. Someone still has to know whether those lines belong. Typing was never scarce. Attention was. If you cannot narrate the happy path and the failure path, you are not done reviewing — yours or the model's.
+
+## Tools I actually use
+
+`rg`, the language server call hierarchy, the test that names the behavior, the type error. Debuggers when the data is a lie. I do not start with a UML generator.
+
+## References
+
+- Felienne Hermans, *The Programmer's Brain* (Manning)
+- Michael Feathers, *Working Effectively with Legacy Code*
+- Diomidis Spinellis, *Code Reading*
+- [Git: git-log -S / pickaxe](https://git-scm.com/docs/git-log#Documentation/git-log.txt--Sltstringgt)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)

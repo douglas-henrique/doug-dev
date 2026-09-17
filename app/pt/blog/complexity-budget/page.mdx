@@ -1,0 +1,58 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Complexidade precisa merecer o lugar',
+  description: desc('pt/blog/complexity-budget'),
+  alternates: {
+    canonical: '/pt/blog/complexity-budget',
+    languages: {
+      en: '/en/blog/complexity-budget',
+      pt: '/pt/blog/complexity-budget',
+      'x-default': '/en/blog/complexity-budget'
+    }
+  }
+};
+
+# Complexidade precisa merecer o lugar
+
+<Author href="/pt" />
+
+<PostDate dateTime="2026-07-01" headline="Complexidade precisa merecer o lugar" path="/pt/blog/complexity-budget">Julho 2026</PostDate>
+
+Toda abstração é um empréstimo. Você paga juros no onboarding, no debugger mentindo, no módulo "flexível" que precisa de um caso especial.
+
+## Essencial vs acidental
+
+Brooks separou complexidade essencial (o problema) e acidental (a máquina). [Moseley e Marks](https://curtclifton.net/papers/MoseleyMarks06a.pdf) empurraram isso em *Out of the Tar Pit*: estado e fluxo de controle são onde a complexidade acidental se esconde. Mais camada muitas vezes adiciona estado, não tira.
+
+O teste complementar do Rich Hickey em [Simple Made Easy](https://www.infoq.com/presentations/Simple-Made-Easy/): simples é não entrelaçado, não "familiar." Uma service mesh que você já conhece ainda pode trançar rede, auth e deploy num blob que você não muda por partes.
+
+## Orçamento, não vibe
+
+Eu faço três perguntas antes de pacote ou padrão novo:
+
+1. O que a gente apaga se isso estiver errado em 90 dias?
+2. Quantos arquivos mudam para a próxima feature parecida?
+3. Um colega novo consegue dar grep no nome e achar a verdade?
+
+Se (1) é "rewrite" e (2) é "meio repo," a abstração estourou o orçamento. Duplicação em dois call sites é mais barata do que um kernel compartilhado com um caller.
+
+```ts
+// connascence of algorithm: os dois mudam juntos
+function priceA(n: number) { return n * 1.1 }
+function priceB(n: number) { return n * 1.1 }
+```
+
+Essa duplicação é honesta. Um `PricingStrategyFactory` para dois SKUs não é.
+
+## Complexidade permitida
+
+Cache, fila e isolamento multi-tenant são reais. Eles pagam aluguel quando você nomeia o modo de falha que evitam (thundering herd, dual-write, noisy neighbor) e a métrica que diria para removê-los.
+
+## Referências
+
+- Brooks, *The Mythical Man-Month* — complexidade essencial vs acidental
+- [Moseley & Marks, *Out of the Tar Pit* (2006)](https://curtclifton.net/papers/MoseleyMarks06a.pdf)
+- [Rich Hickey, *Simple Made Easy*](https://www.infoq.com/presentations/Simple-Made-Easy/)
+- [Connascence](https://connascence.io/) — Meilir Page-Jones
+- [Hyrum's Law](https://www.hyrumslaw.com/)

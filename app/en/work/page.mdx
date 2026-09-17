@@ -1,0 +1,44 @@
+import { desc } from '@/lib/descriptions'
+
+export const metadata = {
+  title: 'Work',
+  description: desc('en/work'),
+  alternates: {
+    canonical: '/en/work',
+    languages: {
+      en: '/en/work',
+      pt: '/pt/work',
+      'x-default': '/en/work'
+    }
+  }
+};
+
+# Work
+
+<Author href="/en" />
+
+Public repos I still point people at. The interesting part is the constraint each one was built under — retrieval, a starter that other people actually cloned, file-based mobile routing — not a gallery of screenshots.
+
+## Contexta
+
+A retrieval-augmented generation stack split across two repos: a Python service that owns chunking, embeddings, and search, and a TypeScript client that talks to it. The split is the point. The model never sees the whole corpus; the API returns the passages the prompt is allowed to use.
+
+I care about the retrieval contract more than the chat UI: what is indexed, how it is scored, what happens when the index is empty. The client stays thin so swapping the backend does not mean rewriting the product.
+
+<GitHubCard repo="douglas-henrique/contexta" />
+
+<GitHubCard repo="douglas-henrique/contexta-client" />
+
+## Next.js complete boilerplate
+
+A template, not a demo app. Next.js 12.3 with SWC, Styled Components, Jest, Testing Library, ESLint, Prettier, and [Plop](https://plopjs.com/) generators so a new page or component is a prompt, not a copy-paste of folder structure.
+
+It is marked as a GitHub template (~54 stars, 7 forks). That is the test that mattered: other people started repos from it. MDX is in the stack too — same bet this site makes, a few years earlier.
+
+<GitHubCard repo="douglas-henrique/nextjs-complete-boilerplate" />
+
+## Expo Router + Nativewind
+
+A mobile starter with Expo Router (file-system routes, same idea as App Router) and Nativewind (Tailwind tokens on React Native). TypeScript from the first file. The goal was a repo you clone and already have navigation, styling, and types — not a blank `expo init` plus three blog posts.
+
+<GitHubCard repo="douglas-henrique/expo-router-ts-nativewind" />
